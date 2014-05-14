@@ -224,4 +224,6 @@ void error(void *user_data, const char *msg, ...) {
         userInfo[NSLocalizedDescriptionKey] = errorDescription;
     }
     parser.parserError = [NSError errorWithDomain:AXHTMLErrorDomain code:AXHTMLErrorUndefined userInfo:userInfo];
+    
+    [parser.delegate parser:parser parseErrorOccurred:parser.parserError];
 }
