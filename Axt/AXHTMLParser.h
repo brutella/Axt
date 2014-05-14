@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-// http://www.jamesh.id.au/articles/libxml-sax/libxml-sax.html
-
 @protocol AXHTMLParserDelegate;
 @interface AXHTMLParser : NSObject
 

@@ -13,6 +13,7 @@
 #import <libxml2/libxml/xmlreader.h>
 
 // Callback functions
+// Great introduction to libxml SAX parser http://www.jamesh.id.au/articles/libxml-sax/libxml-sax.html
 static void start_document(void *user_data);
 static void end_document(void *user_data);
 static void characters_found(void *user_data, const xmlChar *ch, int len);
