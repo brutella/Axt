@@ -25,18 +25,26 @@ pod 'Axt'
 - Inspired by `NSXMLParser` (same methods and delegate protocol)
 - Powered by `libxml`
 - Complete documentation
-- Unit tested
+- Unit tested:
 
 # Usage
 
-    #import "Axt.h"
+```objective-c
+#import "Axt.h"
     
-    NSInputStream *stream = [NSInputStream inputStreamWithFileAtPath:...];
-    AXHTMLParser *parser = [[AXHTMLParser alloc] initWithStream:stream];
-    parser.delegate = ... // set the delegate
-    
-    BOOL success = [parser parse];
+NSInputStream *stream = [NSInputStream inputStreamWithFileAtPath:...];
+AXHTMLParser *parser = [[AXHTMLParser alloc] initWithStream:stream];
+parser.delegate = ... // set the delegate
 
+BOOL success = [parser parse];
+```
+
+## Unit Test
+
+Run the unit test with [xctool](https://github.com/facebook/xctool)
+
+    xctool -find-target AxtTests -sdk iphonesimulator test
+    
 # Contact
 
 Matthias Hochgatterer
