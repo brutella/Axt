@@ -15,7 +15,9 @@ Axt is highly inspired by `NSXMLParser` which is great for parsing XML but not f
 
 ### Podfile
 
-    pod 'Axt'
+```ruby
+pod 'Axt'
+```
 
 # Features
 
