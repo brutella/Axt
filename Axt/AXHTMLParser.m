@@ -123,7 +123,7 @@ static NSUInteger const CHUNK_SIZE = 256;
         BOOL bytesAvailable = readBytes > 0;
         int end = [_inputStream hasBytesAvailable] ? 0 : 1;
         if (bytesAvailable || end == 1) { // parse chunk when bytes are available or end reached
-            htmlParseChunk(_context, (const char*)buffer, readBytes, end);
+            htmlParseChunk(_context, (const char*)buffer, (int)readBytes, end);
         }
     }
     
