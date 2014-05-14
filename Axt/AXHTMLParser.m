@@ -44,7 +44,7 @@ static xmlSAXHandler _saxHandler = {
     NULL,           // processingInstructionSAXFunc processingInstruction;
     NULL,           // commentSAXFunc comment;
     warning,        // warningSAXFunc warning;
-    error,          // errorSAXFunc error;
+    warning,        // errorSAXFunc error;
     error,          // fatalErrorSAXFunc fatalError;
     NULL,           // getParameterEntitySAXFunc getParameterEntity;
     NULL,           // cdataBlockSAXFunc cdataBlock;
@@ -113,14 +113,16 @@ static NSUInteger const CHUNK_SIZE = 256;
 {
     uint8_t buffer[CHUNK_SIZE];
     while ([_inputStream hasBytesAvailable] && !_abort) {
+        // Create context if not done already
+        if (!_context) {
+            _context = htmlCreatePushParserCtxt(&_saxHandler, (__bridge void*)self, NULL, 0, NULL, XML_CHAR_ENCODING_UTF8);
+            htmlCtxtUseOptions(_context, HTML_PARSE_RECOVER);
+        }
+        
         NSInteger readBytes = [_inputStream read:buffer maxLength:CHUNK_SIZE];
-        if (readBytes > 0) {
-            if (!_context) {
-                _context = htmlCreatePushParserCtxt(&_saxHandler, (__bridge void*)self, NULL, 0, NULL, XML_CHAR_ENCODING_UTF8);
-                htmlCtxtUseOptions(_context, HTML_PARSE_RECOVER);
-            }
-            
-            int end = [_inputStream hasBytesAvailable] ? 0 : 1;
+        BOOL bytesAvailable = readBytes > 0;
+        int end = [_inputStream hasBytesAvailable] ? 0 : 1;
+        if (bytesAvailable || end == 1) { // parse chunk when bytes are available or end reached
             htmlParseChunk(_context, (const char*)buffer, readBytes, end);
         }
     }

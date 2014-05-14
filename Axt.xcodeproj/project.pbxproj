@@ -14,6 +14,8 @@
 		1033F0B2192375E200B8CA28 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1033F0B1192375E200B8CA28 /* libxml2.dylib */; };
 		1033F0B4192376A500B8CA28 /* AXSimpleHTMLTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1033F0B3192376A500B8CA28 /* AXSimpleHTMLTests.m */; };
 		1038EDBC1923843D00EFEE2E /* AXInvalidHTMLTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1038EDBB1923843D00EFEE2E /* AXInvalidHTMLTests.m */; };
+		1038EDBE1923905900EFEE2E /* AXRealWorldHTMLTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1038EDBD1923905900EFEE2E /* AXRealWorldHTMLTest.m */; };
+		1038EDC11923923000EFEE2E /* test.html in Resources */ = {isa = PBXBuildFile; fileRef = 1038EDC01923923000EFEE2E /* test.html */; };
 		B2FE08C842234AE19A7357B6 /* libPods-AxtTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 326A5617BDB34E67B23B6998 /* libPods-AxtTests.a */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +31,8 @@
 		1033F0B1192375E200B8CA28 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		1033F0B3192376A500B8CA28 /* AXSimpleHTMLTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXSimpleHTMLTests.m; sourceTree = "<group>"; };
 		1038EDBB1923843D00EFEE2E /* AXInvalidHTMLTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXInvalidHTMLTests.m; sourceTree = "<group>"; };
+		1038EDBD1923905900EFEE2E /* AXRealWorldHTMLTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXRealWorldHTMLTest.m; sourceTree = "<group>"; };
+		1038EDC01923923000EFEE2E /* test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = test.html; sourceTree = "<group>"; };
 		2D367B206CD64C038ADB500B /* Pods-AxtTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AxtTests.xcconfig"; path = "Pods/Pods-AxtTests.xcconfig"; sourceTree = "<group>"; };
 		326A5617BDB34E67B23B6998 /* libPods-AxtTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AxtTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -93,9 +97,11 @@
 		1033F09D192374FC00B8CA28 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				1038EDBF1923923000EFEE2E /* Resources */,
 				1033F09E192374FC00B8CA28 /* Supporting Files */,
 				1033F0B3192376A500B8CA28 /* AXSimpleHTMLTests.m */,
 				1038EDBB1923843D00EFEE2E /* AXInvalidHTMLTests.m */,
+				1038EDBD1923905900EFEE2E /* AXRealWorldHTMLTest.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -106,6 +112,14 @@
 				1033F09F192374FC00B8CA28 /* AxtTests-Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1038EDBF1923923000EFEE2E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1038EDC01923923000EFEE2E /* test.html */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,6 +175,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1038EDC11923923000EFEE2E /* test.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,6 +222,7 @@
 				1038EDBC1923843D00EFEE2E /* AXInvalidHTMLTests.m in Sources */,
 				1033F0B4192376A500B8CA28 /* AXSimpleHTMLTests.m in Sources */,
 				1033F0B0192375C100B8CA28 /* AXHTMLParser.m in Sources */,
+				1038EDBE1923905900EFEE2E /* AXRealWorldHTMLTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
