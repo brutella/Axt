@@ -9,6 +9,7 @@
 #import <XCTest/XCTest.h>
 #import "Axt.h"
 #import "OCMock.h"
+#import "AXHTMLParserDelegate.h"
 
 @interface AXRealWorldHTMLTest : XCTestCase
 
@@ -36,6 +37,21 @@
     parser.delegate = (id<AXHTMLParserDelegate>)delegateMock;
     [parser parse];
     [delegateMock verify];
+}
+
+- (void)_testLoggingDelegateMethods
+{
+    NSString *htmlString = @"<html>"
+    "<head></head>"
+    "<body>"
+    "<h1>Axt</h1>"
+    "<p>A forgiving HTML SAX Parser for iOS<br></p>"
+    "</body>"
+    "</html>";
+    AXHTMLParser *parser = [[AXHTMLParser alloc] initWithHTMLString:htmlString];
+    AXHTMLParserDelegate *delegate = [[AXHTMLParserDelegate alloc] init];
+    parser.delegate = delegate;
+    [parser parse];
 }
 
 @end

@@ -25,7 +25,7 @@ pod 'Axt'
 - Inspired by `NSXMLParser` (same methods and delegate protocol)
 - Powered by `libxml`
 - Complete documentation
-- Unit tested:
+- Unit tested
 
 # Usage
 
@@ -38,6 +38,37 @@ parser.delegate = ... // set the delegate
 
 BOOL success = [parser parse];
 ```
+
+## Example
+
+Parsing this not well-formed HTML
+
+    <html>
+        <head></head>
+        <body>
+            <h1>Axt</h1>
+            <p>A forgiving HTML SAX Parser for iOS<br></p>
+        </body>
+    </html>
+
+will result in the following delegate calls
+
+    parserDidStartDocument:
+    parser:didStartElement:attributes: html
+    parser:didStartElement:attributes: head
+    parser:didEndElement: head
+    parser:didStartElement:attributes: body
+    parser:didStartElement:attributes: h1
+    parser:foundCharacters: Axt
+    parser:didEndElement: h1
+    parser:didStartElement:attributes: p
+    parser:foundCharacters: A forgiving HTML SAX Parser for iOS
+    parser:didStartElement:attributes: br
+    parser:didEndElement: br
+    parser:didEndElement: p
+    parser:didEndElement: body
+    parser:didEndElement: html
+    
 
 ## Unit Test
 
