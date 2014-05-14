@@ -58,11 +58,21 @@ static xmlSAXHandler _saxHandler = {
     NULL            // xmlStructuredErrorFunc serror;
 };
 
+typedef struct {
+    BOOL startDocument;
+    BOOL endDocument;
+    BOOL startElement;
+    BOOL foundCharacters;
+    BOOL endElement;
+    BOOL errorOccurred;
+} AXHTMLParserDelegateImplementation;
+
 @interface AXHTMLParser ()
 
 @property (nonatomic, strong) NSInputStream *inputStream;
 @property (nonatomic, assign) BOOL parsing;
 @property (nonatomic, assign) BOOL abort;
+@property (nonatomic, assign) AXHTMLParserDelegateImplementation delegateImplementation;
 
 @property (nonatomic, assign) htmlParserCtxtPtr context;
 
@@ -92,6 +102,22 @@ static xmlSAXHandler _saxHandler = {
 {
     htmlFreeParserCtxt(_context);
 }
+
+- (void)setDelegate:(id<AXHTMLParserDelegate>)delegate
+{
+    if (_delegate != delegate) {
+        _delegate = delegate;
+        
+        _delegateImplementation.startDocument = [_delegate respondsToSelector:@selector(parserDidStartDocument:)];
+        _delegateImplementation.endDocument = [_delegate respondsToSelector:@selector(parserDidEndDocument:)];
+        _delegateImplementation.startElement = [_delegate respondsToSelector:@selector(parser:didStartElement:attributes:)];
+        _delegateImplementation.foundCharacters = [_delegate respondsToSelector:@selector(parser:foundCharacters:)];
+        _delegateImplementation.endElement = [_delegate respondsToSelector:@selector(parser:didEndElement:)];
+        _delegateImplementation.errorOccurred = [_delegate respondsToSelector:@selector(parser:parseErrorOccurred:)];
+    }
+}
+
+#pragma mark - Public
 
 - (BOOL)parse
 {
@@ -130,7 +156,9 @@ static NSUInteger const CHUNK_SIZE = 256;
     
     if (_abort) {
         NSError *abortError = [NSError errorWithDomain:AXHTMLErrorDomain code:AXHTMLErrorAborted userInfo:@{}];
-        [self.delegate parser:self parseErrorOccurred:abortError];
+        if (_delegateImplementation.errorOccurred) {
+            [_delegate parser:self parseErrorOccurred:abortError];
+        }
     }
 }
 
@@ -170,34 +198,44 @@ NSDictionary *NSDictionaryFromLibXMLKeyValueChar(const xmlChar **values)
 static void start_document(void *user_data)
 {
     AXHTMLParser *parser = (__bridge AXHTMLParser *)user_data;
-    [parser.delegate parserDidStartDocument:parser];
+    if (parser.delegateImplementation.startDocument) {
+        [parser.delegate parserDidStartDocument:parser];
+    }
 }
 
 static void end_document(void *user_data)
 {
     AXHTMLParser *parser = (__bridge AXHTMLParser *)user_data;
-    [parser.delegate parserDidEndDocument:parser];
+    if (parser.delegateImplementation.endDocument) {
+        [parser.delegate parserDidEndDocument:parser];
+    }
 }
 
 void characters_found(void * user_data, const xmlChar * ch, int length)
 {
     AXHTMLParser *parser = (__bridge AXHTMLParser *)user_data;
-    NSString *string = [[NSString alloc] initWithBytes:ch length:length encoding:NSUTF8StringEncoding];
-    [parser.delegate parser:parser foundCharacters:string];
+    if (parser.delegateImplementation.foundCharacters) {
+        NSString *string = [[NSString alloc] initWithBytes:ch length:length encoding:NSUTF8StringEncoding];
+        [parser.delegate parser:parser foundCharacters:string];
+    }
 }
 
 void start_element(void * 	user_data, const xmlChar * 	name, const xmlChar ** 	attrs)
 {
     AXHTMLParser *parser = (__bridge AXHTMLParser *)user_data;
-    NSString *elementName = NSStringFromLibXMLChar(name);
-    NSDictionary *attributes = NSDictionaryFromLibXMLKeyValueChar(attrs);
-    [parser.delegate parser:parser didStartElement:elementName attributes:attributes];
+    if (parser.delegateImplementation.startElement) {
+        NSString *elementName = NSStringFromLibXMLChar(name);
+        NSDictionary *attributes = NSDictionaryFromLibXMLKeyValueChar(attrs);
+        [parser.delegate parser:parser didStartElement:elementName attributes:attributes];
+    }
 }
 
 void end_element(void *user_data, const xmlChar *name)
 {
     AXHTMLParser *parser = (__bridge AXHTMLParser *)user_data;
-    [parser.delegate parser:parser didEndElement:NSStringFromLibXMLChar(name)];
+    if (parser.delegateImplementation.endElement) {
+        [parser.delegate parser:parser didEndElement:NSStringFromLibXMLChar(name)];
+    }
 }
 
 void warning(void *user_data, const char *msg, ...) {
@@ -228,5 +266,7 @@ void error(void *user_data, const char *msg, ...) {
     }
     parser.parserError = [NSError errorWithDomain:AXHTMLErrorDomain code:AXHTMLErrorUndefined userInfo:userInfo];
     
-    [parser.delegate parser:parser parseErrorOccurred:parser.parserError];
+    if (parser.delegateImplementation.errorOccurred) {
+        [parser.delegate parser:parser parseErrorOccurred:parser.parserError];
+    }
 }

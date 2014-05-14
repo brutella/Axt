@@ -32,6 +32,7 @@
 @end
 
 @protocol AXHTMLParserDelegate <NSObject>
+@optional
 
 /** Called when the document parsing started
  
