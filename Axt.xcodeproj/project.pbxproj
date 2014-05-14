@@ -12,7 +12,9 @@
 		1033F099192374FC00B8CA28 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1033F098192374FC00B8CA28 /* UIKit.framework */; };
 		1033F0B0192375C100B8CA28 /* AXHTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1033F0AE192375C100B8CA28 /* AXHTMLParser.m */; };
 		1033F0B2192375E200B8CA28 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1033F0B1192375E200B8CA28 /* libxml2.dylib */; };
-		1033F0B4192376A500B8CA28 /* AXHTMLParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1033F0B3192376A500B8CA28 /* AXHTMLParserTests.m */; };
+		1033F0B4192376A500B8CA28 /* AXSimpleHTMLTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1033F0B3192376A500B8CA28 /* AXSimpleHTMLTests.m */; };
+		1038EDBC1923843D00EFEE2E /* AXInvalidHTMLTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1038EDBB1923843D00EFEE2E /* AXInvalidHTMLTests.m */; };
+		B2FE08C842234AE19A7357B6 /* libPods-AxtTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 326A5617BDB34E67B23B6998 /* libPods-AxtTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +27,10 @@
 		1033F0AD192375C100B8CA28 /* AXHTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AXHTMLParser.h; sourceTree = "<group>"; };
 		1033F0AE192375C100B8CA28 /* AXHTMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXHTMLParser.m; sourceTree = "<group>"; };
 		1033F0B1192375E200B8CA28 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
-		1033F0B3192376A500B8CA28 /* AXHTMLParserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXHTMLParserTests.m; sourceTree = "<group>"; };
+		1033F0B3192376A500B8CA28 /* AXSimpleHTMLTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXSimpleHTMLTests.m; sourceTree = "<group>"; };
+		1038EDBB1923843D00EFEE2E /* AXInvalidHTMLTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXInvalidHTMLTests.m; sourceTree = "<group>"; };
+		2D367B206CD64C038ADB500B /* Pods-AxtTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AxtTests.xcconfig"; path = "Pods/Pods-AxtTests.xcconfig"; sourceTree = "<group>"; };
+		326A5617BDB34E67B23B6998 /* libPods-AxtTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AxtTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +42,7 @@
 				1033F096192374FC00B8CA28 /* XCTest.framework in Frameworks */,
 				1033F099192374FC00B8CA28 /* UIKit.framework in Frameworks */,
 				1033F097192374FC00B8CA28 /* Foundation.framework in Frameworks */,
+				B2FE08C842234AE19A7357B6 /* libPods-AxtTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,6 +56,7 @@
 				1033F09D192374FC00B8CA28 /* Tests */,
 				1033F086192374FC00B8CA28 /* Frameworks */,
 				1033F085192374FC00B8CA28 /* Products */,
+				2D367B206CD64C038ADB500B /* Pods-AxtTests.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -68,6 +75,7 @@
 				1033F087192374FC00B8CA28 /* Foundation.framework */,
 				1033F095192374FC00B8CA28 /* XCTest.framework */,
 				1033F098192374FC00B8CA28 /* UIKit.framework */,
+				326A5617BDB34E67B23B6998 /* libPods-AxtTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -86,7 +94,8 @@
 			isa = PBXGroup;
 			children = (
 				1033F09E192374FC00B8CA28 /* Supporting Files */,
-				1033F0B3192376A500B8CA28 /* AXHTMLParserTests.m */,
+				1033F0B3192376A500B8CA28 /* AXSimpleHTMLTests.m */,
+				1038EDBB1923843D00EFEE2E /* AXInvalidHTMLTests.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -106,9 +115,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1033F0AA192374FC00B8CA28 /* Build configuration list for PBXNativeTarget "AxtTests" */;
 			buildPhases = (
+				13B145D7960D43AD848CD9DF /* Check Pods Manifest.lock */,
 				1033F090192374FC00B8CA28 /* Sources */,
 				1033F091192374FC00B8CA28 /* Frameworks */,
 				1033F092192374FC00B8CA28 /* Resources */,
+				6FC75E34EF5644E2B6C8D950 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -155,12 +166,46 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		13B145D7960D43AD848CD9DF /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		6FC75E34EF5644E2B6C8D950 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-AxtTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		1033F090192374FC00B8CA28 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1033F0B4192376A500B8CA28 /* AXHTMLParserTests.m in Sources */,
+				1038EDBC1923843D00EFEE2E /* AXInvalidHTMLTests.m in Sources */,
+				1033F0B4192376A500B8CA28 /* AXSimpleHTMLTests.m in Sources */,
 				1033F0B0192375C100B8CA28 /* AXHTMLParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -238,6 +283,7 @@
 		};
 		1033F0AB192374FC00B8CA28 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2D367B206CD64C038ADB500B /* Pods-AxtTests.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -261,6 +307,7 @@
 		};
 		1033F0AC192374FC00B8CA28 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2D367B206CD64C038ADB500B /* Pods-AxtTests.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -297,6 +344,7 @@
 				1033F0AC192374FC00B8CA28 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

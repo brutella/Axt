@@ -12,67 +12,56 @@
 #import <libxml2/libxml/HTMLparser.h>
 #import <libxml2/libxml/xmlreader.h>
 
-// lib xml stuff
 // Callback functions
-void start_document(void *user_data);
-void end_document(void *user_data);
-void characters_found(	void * 	user_data,
-                      const xmlChar * 	ch,
-                      int  	len);
-
-void start_element(	void * 	user_data,
-                   const xmlChar * 	name,
-                   const xmlChar ** 	attrs);
-void end_element(void * 	user_data, const xmlChar * 	name);
-
-void start_element_v2 (void *ctx, const xmlChar *localname, const xmlChar *prefix, const xmlChar *URI, int nb_namespaces, const xmlChar **namespaces, int nb_attributes, int nb_defaulted, const xmlChar **attributes);
-void end_element_v2 (void *ctx, const xmlChar *localname, const xmlChar *prefix, const xmlChar *URI);
-
-void warning(void *user_data, const char *msg, ...);
-void error(void *user_data, const char *msg, ...);
-void fatal_error(void *user_data, const char *msg, ...);
+static void start_document(void *user_data);
+static void end_document(void *user_data);
+static void characters_found(void *user_data, const xmlChar *ch, int len);
+static void start_element(void *user_data, const xmlChar *name, const xmlChar **attrs);
+static void end_element(void *user_data, const xmlChar *name);
+static void warning(void *user_data, const char *msg, ...);
+static void error(void *user_data, const char *msg, ...);
 
 static xmlSAXHandler _saxHandler = {
-    NULL, //internalSubsetSAXFunc internalSubset;
-    NULL, //isStandaloneSAXFunc isStandalone;
-    NULL, //hasInternalSubsetSAXFunc hasInternalSubset;
-    NULL, //hasExternalSubsetSAXFunc hasExternalSubset;
-    NULL, //resolveEntitySAXFunc resolveEntity;
-    NULL, //getEntitySAXFunc getEntity;
-    NULL, //entityDeclSAXFunc entityDecl;
-    NULL, //notationDeclSAXFunc notationDecl;
-    NULL, //attributeDeclSAXFunc attributeDecl;
-    NULL, //elementDeclSAXFunc elementDecl;
-    NULL, //unparsedEntityDeclSAXFunc unparsedEntityDecl;
-    NULL, //setDocumentLocatorSAXFunc setDocumentLocator;
-    start_document, //startDocumentSAXFunc startDocument;
-    end_document, //endDocumentSAXFunc endDocument;
-    start_element, //startElementSAXFunc startElement;
-    end_element, //endElementSAXFunc endElement;
-    NULL, //referenceSAXFunc reference;
-    characters_found, //charactersSAXFunc characters;
-    NULL, //ignorableWhitespaceSAXFunc ignorableWhitespace;
-    NULL, //processingInstructionSAXFunc processingInstruction;
-    NULL, //commentSAXFunc comment;
-    warning, //warningSAXFunc warning;
-    error, //errorSAXFunc error;
-    error, //fatalErrorSAXFunc fatalError;
-    NULL, //getParameterEntitySAXFunc getParameterEntity;
-    NULL, // cdataBlockSAXFunc cdataBlock;
-    NULL, // externalSubsetSAXFunc externalSubset;
-    0, // unsigned int initialized;
+    NULL,           // internalSubsetSAXFunc internalSubset;
+    NULL,           // isStandaloneSAXFunc isStandalone;
+    NULL,           // hasInternalSubsetSAXFunc hasInternalSubset;
+    NULL,           // hasExternalSubsetSAXFunc hasExternalSubset;
+    NULL,           // resolveEntitySAXFunc resolveEntity;
+    NULL,           // getEntitySAXFunc getEntity;
+    NULL,           // entityDeclSAXFunc entityDecl;
+    NULL,           // notationDeclSAXFunc notationDecl;
+    NULL,           // attributeDeclSAXFunc attributeDecl;
+    NULL,           // elementDeclSAXFunc elementDecl;
+    NULL,           // unparsedEntityDeclSAXFunc unparsedEntityDecl;
+    NULL,           // setDocumentLocatorSAXFunc setDocumentLocator;
+    start_document, // startDocumentSAXFunc startDocument;
+    end_document,   // endDocumentSAXFunc endDocument;
+    start_element,  // startElementSAXFunc startElement;
+    end_element,    // endElementSAXFunc endElement;
+    NULL,           // referenceSAXFunc reference;
+    characters_found, // charactersSAXFunc characters;
+    NULL,           // ignorableWhitespaceSAXFunc ignorableWhitespace;
+    NULL,           // processingInstructionSAXFunc processingInstruction;
+    NULL,           // commentSAXFunc comment;
+    warning,        // warningSAXFunc warning;
+    error,          // errorSAXFunc error;
+    error,          // fatalErrorSAXFunc fatalError;
+    NULL,           // getParameterEntitySAXFunc getParameterEntity;
+    NULL,           // cdataBlockSAXFunc cdataBlock;
+    NULL,           // externalSubsetSAXFunc externalSubset;
+    0,              // unsigned int initialized;
     /* The following fields are extensions available only on version 2 */
-    NULL, // void *_private;
-    NULL, // startElementNsSAX2Func startElementNs;
-    NULL,// endElementNsSAX2Func endElementNs;
-    NULL // xmlStructuredErrorFunc serror;
+    NULL,           // void *_private;
+    NULL,           // startElementNsSAX2Func startElementNs;
+    NULL,           // endElementNsSAX2Func endElementNs;
+    NULL            // xmlStructuredErrorFunc serror;
 };
 
 @interface AXHTMLParser ()
 
 @property (nonatomic, strong) NSInputStream *inputStream;
 @property (nonatomic, assign) BOOL parsing;
-@property (nonatomic, assign) BOOL finished;
+@property (nonatomic, assign) BOOL abort;
 
 @property (nonatomic, assign) htmlParserCtxtPtr context;
 
@@ -114,7 +103,7 @@ static xmlSAXHandler _saxHandler = {
 
 - (void)abortParsing
 {
-    // TODO
+    _abort = YES;
 }
 
 #pragma mark - Private
@@ -123,23 +112,30 @@ static NSUInteger const CHUNK_SIZE = 256;
 - (void)_parse
 {
     uint8_t buffer[CHUNK_SIZE];
-    while ([_inputStream hasBytesAvailable]) {
+    while ([_inputStream hasBytesAvailable] && !_abort) {
         NSInteger readBytes = [_inputStream read:buffer maxLength:CHUNK_SIZE];
         if (readBytes > 0) {
             if (!_context) {
-                _context = htmlCreatePushParserCtxt(&_saxHandler, (__bridge void*)self, (const char*)buffer, readBytes, NULL, XML_CHAR_ENCODING_UTF8);
-                int result = htmlCtxtUseOptions(_context, HTML_PARSE_NODEFDTD);
-                NSAssert(result == 0, @"Could ont set parse options");
-            } else {
-                htmlParseChunk(_context, (const char*)buffer, readBytes, 0);
+                _context = htmlCreatePushParserCtxt(&_saxHandler, (__bridge void*)self, NULL, 0, NULL, XML_CHAR_ENCODING_UTF8);
+                htmlCtxtUseOptions(_context, HTML_PARSE_RECOVER);
             }
+            
+            int end = [_inputStream hasBytesAvailable] ? 0 : 1;
+            htmlParseChunk(_context, (const char*)buffer, readBytes, end);
         }
+    }
+    
+    if (_abort) {
+        NSError *abortError = [NSError errorWithDomain:AXHTMLErrorDomain code:AXHTMLErrorAborted userInfo:@{}];
+        [self.delegate parser:self parseErrorOccurred:abortError];
     }
 }
 
 @end
 
-NSString *NSStringFromLibXMLChar(const xmlChar *characters) {
+// Converts a char array to NSString
+NSString *NSStringFromLibXMLChar(const xmlChar *characters)
+{
     if (characters) {
         return [NSString stringWithUTF8String:(const char*)characters];
     }
@@ -147,13 +143,34 @@ NSString *NSStringFromLibXMLChar(const xmlChar *characters) {
     return nil;
 }
 
-void start_document(void *user_data)
+// Converts a list of key/value pairs to NSDictionary
+NSDictionary *NSDictionaryFromLibXMLKeyValueChar(const xmlChar **values)
+{
+    NSMutableDictionary *dictionary = [@{} mutableCopy];
+    const xmlChar **element = values;
+    if (element) {
+        do {
+            NSString *key = NSStringFromLibXMLChar(*element);
+            element++;
+            NSString *value = NSStringFromLibXMLChar(*element);
+            
+            if (key && value) {
+                dictionary[key] = value;
+            }
+        } while (*++element);
+    }
+    
+    return dictionary;
+}
+
+// Callback function
+static void start_document(void *user_data)
 {
     AXHTMLParser *parser = (__bridge AXHTMLParser *)user_data;
     [parser.delegate parserDidStartDocument:parser];
 }
 
-void end_document(void *user_data)
+static void end_document(void *user_data)
 {
     AXHTMLParser *parser = (__bridge AXHTMLParser *)user_data;
     [parser.delegate parserDidEndDocument:parser];
@@ -170,21 +187,7 @@ void start_element(void * 	user_data, const xmlChar * 	name, const xmlChar ** 	a
 {
     AXHTMLParser *parser = (__bridge AXHTMLParser *)user_data;
     NSString *elementName = NSStringFromLibXMLChar(name);
-    
-    NSMutableDictionary *attributes = [@{} mutableCopy];
-    const xmlChar **element = attrs;
-    if (element) {
-        do {
-            NSString *key = NSStringFromLibXMLChar(*element);
-            element++;
-            NSString *value = NSStringFromLibXMLChar(*element);
-            
-            if (key && value) {
-                attributes[key] = value;
-            }
-        } while (*++element);
-    }
-    
+    NSDictionary *attributes = NSDictionaryFromLibXMLKeyValueChar(attrs);
     [parser.delegate parser:parser didStartElement:elementName attributes:attributes];
 }
 
@@ -202,7 +205,7 @@ void warning(void *user_data, const char *msg, ...) {
     NSString *warning = [[NSString alloc] initWithFormat:formatString arguments:args];
     va_end(args);
     
-    NSLog(@"Warning: %@", warning);
+    NSLog(@"[Warning] %@", warning);
 }
 
 void error(void *user_data, const char *msg, ...) {
@@ -214,7 +217,7 @@ void error(void *user_data, const char *msg, ...) {
     NSString *errorDescription = [[NSString alloc] initWithFormat:formatString arguments:args];
     va_end(args);
     
-    NSLog(@"Error: %@", errorDescription);
+    NSLog(@"[Error] %@", errorDescription);
     
     NSMutableDictionary *userInfo = [@{} mutableCopy];
     if (errorDescription) {
