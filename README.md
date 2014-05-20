@@ -39,7 +39,9 @@ parser.delegate = ... // set the delegate
 BOOL success = [parser parse];
 ```
 
-## Example
+## Examples
+
+### Not well-formed
 
 Parsing this not well-formed HTML
 
@@ -70,6 +72,30 @@ will result in the following delegate calls
     parser:didEndElement: html
     
 
+### Partial HTML
+
+The following html is not only-well formed but also misses the `html` and `body` tags.
+
+    <h1>header
+        <p>paragraph<br></p>
+
+However the parser handles the HTML and calls the delegate methods correctly.
+
+    parserDidStartDocument:
+    parser:didStartElement:attributes: html
+    parser:didStartElement:attributes: body
+    parser:didStartElement:attributes: h1
+    parser:foundCharacters: header
+    parser:didEndElement: h1
+    parser:didStartElement:attributes: p
+    parser:foundCharacters: paragraph
+    parser:didStartElement:attributes: br
+    parser:didEndElement: br
+    parser:didEndElement: p
+    parser:didEndElement: body
+    parser:didEndElement: html
+    parserDidEndDocument:
+    
 ## Unit Test
 
 Run the unit test with [xctool](https://github.com/facebook/xctool)

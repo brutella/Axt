@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1029221A192B5FA600F416D7 /* AXPartialHTMLTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 10292219192B5FA600F416D7 /* AXPartialHTMLTests.m */; };
 		1033F096192374FC00B8CA28 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1033F095192374FC00B8CA28 /* XCTest.framework */; };
 		1033F097192374FC00B8CA28 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1033F087192374FC00B8CA28 /* Foundation.framework */; };
 		1033F099192374FC00B8CA28 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1033F098192374FC00B8CA28 /* UIKit.framework */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		10292219192B5FA600F416D7 /* AXPartialHTMLTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXPartialHTMLTests.m; sourceTree = "<group>"; };
 		1033F087192374FC00B8CA28 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1033F08C192374FC00B8CA28 /* Axt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Axt.h; sourceTree = "<group>"; };
 		1033F094192374FC00B8CA28 /* AxtTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AxtTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,6 +109,7 @@
 				1033F0B3192376A500B8CA28 /* AXSimpleHTMLTests.m */,
 				1038EDBB1923843D00EFEE2E /* AXInvalidHTMLTests.m */,
 				1038EDBD1923905900EFEE2E /* AXRealWorldHTMLTest.m */,
+				10292219192B5FA600F416D7 /* AXPartialHTMLTests.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -229,6 +232,7 @@
 				1033F0B0192375C100B8CA28 /* AXHTMLParser.m in Sources */,
 				1038EDC41923B9A200EFEE2E /* AXHTMLParserDelegate.m in Sources */,
 				1038EDBE1923905900EFEE2E /* AXRealWorldHTMLTest.m in Sources */,
+				1029221A192B5FA600F416D7 /* AXPartialHTMLTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
