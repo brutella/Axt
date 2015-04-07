@@ -6,6 +6,15 @@
 //  Copyright (c) 2014 Matthias Hochgatterer. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+
+//! Project version number for Axt.
+FOUNDATION_EXPORT double AxtVersionNumber;
+
+//! Project version string for Axt.
+FOUNDATION_EXPORT const unsigned char AxtVersionString[];
+
+
 #ifndef __AXT__
 #define __AXT__
 
