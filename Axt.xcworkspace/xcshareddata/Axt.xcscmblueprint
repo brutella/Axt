@@ -1,0 +1,37 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "2E31D2BAB0B3049FF962C46DB38E9EAD857BE875",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "7CA5E65BA423D05E8BD2758D4672B1C6D16F5813" : 0,
+    "2E31D2BAB0B3049FF962C46DB38E9EAD857BE875" : 0,
+    "F58929673AE316E50ABD11CF3D2173A6C4ECA026" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "7593955B-9EEB-419E-856D-7EC1D5099D59",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "7CA5E65BA423D05E8BD2758D4672B1C6D16F5813" : "",
+    "2E31D2BAB0B3049FF962C46DB38E9EAD857BE875" : "Axt",
+    "F58929673AE316E50ABD11CF3D2173A6C4ECA026" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Axt",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 203,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Axt.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/inquisitivesoft\/Axt.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "2E31D2BAB0B3049FF962C46DB38E9EAD857BE875"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/inquisitiveSoft\/ContentExtractor.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "7CA5E65BA423D05E8BD2758D4672B1C6D16F5813"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:inquisitiveSoft\/Syml.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F58929673AE316E50ABD11CF3D2173A6C4ECA026"
+    }
+  ]
+}
