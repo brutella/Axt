@@ -18,6 +18,10 @@
 		1038EDBE1923905900EFEE2E /* AXRealWorldHTMLTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1038EDBD1923905900EFEE2E /* AXRealWorldHTMLTest.m */; };
 		1038EDC11923923000EFEE2E /* test.html in Resources */ = {isa = PBXBuildFile; fileRef = 1038EDC01923923000EFEE2E /* test.html */; };
 		1038EDC41923B9A200EFEE2E /* AXHTMLParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1038EDC31923B9A200EFEE2E /* AXHTMLParserDelegate.m */; };
+		4AFC6AFE1AD376D4007A34BC /* Axt.h in Headers */ = {isa = PBXBuildFile; fileRef = 4AFC6AFD1AD376D4007A34BC /* Axt.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4AFC6B121AD3776E007A34BC /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1033F0B1192375E200B8CA28 /* libxml2.dylib */; };
+		4AFC6B131AD377B5007A34BC /* AXHTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1033F0AE192375C100B8CA28 /* AXHTMLParser.m */; };
+		4AFC6B141AD377BC007A34BC /* AXHTMLParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 1033F0AD192375C100B8CA28 /* AXHTMLParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B2FE08C842234AE19A7357B6 /* libPods-AxtTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 326A5617BDB34E67B23B6998 /* libPods-AxtTests.a */; };
 /* End PBXBuildFile section */
 
@@ -38,8 +42,12 @@
 		1038EDC01923923000EFEE2E /* test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = test.html; sourceTree = "<group>"; };
 		1038EDC21923B9A200EFEE2E /* AXHTMLParserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AXHTMLParserDelegate.h; sourceTree = "<group>"; };
 		1038EDC31923B9A200EFEE2E /* AXHTMLParserDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXHTMLParserDelegate.m; sourceTree = "<group>"; };
-		2D367B206CD64C038ADB500B /* Pods-AxtTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AxtTests.xcconfig"; path = "Pods/Pods-AxtTests.xcconfig"; sourceTree = "<group>"; };
 		326A5617BDB34E67B23B6998 /* libPods-AxtTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AxtTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4AFC6AF91AD376D4007A34BC /* Axt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Axt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4AFC6AFC1AD376D4007A34BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4AFC6AFD1AD376D4007A34BC /* Axt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Axt.h; sourceTree = "<group>"; };
+		74DFAD83B75FFCC6EA9FDB67 /* Pods-AxtTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AxtTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AxtTests/Pods-AxtTests.release.xcconfig"; sourceTree = "<group>"; };
+		C9CAB838D417D81DE5B58922 /* Pods-AxtTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AxtTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AxtTests/Pods-AxtTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +63,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4AFC6AF51AD376D4007A34BC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4AFC6B121AD3776E007A34BC /* libxml2.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -63,9 +79,10 @@
 			children = (
 				1033F089192374FC00B8CA28 /* Axt */,
 				1033F09D192374FC00B8CA28 /* Tests */,
+				4AFC6AFA1AD376D4007A34BC /* Axt Framework */,
 				1033F086192374FC00B8CA28 /* Frameworks */,
 				1033F085192374FC00B8CA28 /* Products */,
-				2D367B206CD64C038ADB500B /* Pods-AxtTests.xcconfig */,
+				A3606EAFF7B1C765A6D7E9F2 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -73,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				1033F094192374FC00B8CA28 /* AxtTests.xctest */,
+				4AFC6AF91AD376D4007A34BC /* Axt.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -92,9 +110,9 @@
 		1033F089192374FC00B8CA28 /* Axt */ = {
 			isa = PBXGroup;
 			children = (
+				1033F08C192374FC00B8CA28 /* Axt.h */,
 				1033F0AD192375C100B8CA28 /* AXHTMLParser.h */,
 				1033F0AE192375C100B8CA28 /* AXHTMLParser.m */,
-				1033F08C192374FC00B8CA28 /* Axt.h */,
 			);
 			path = Axt;
 			sourceTree = "<group>";
@@ -130,7 +148,46 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		4AFC6AFA1AD376D4007A34BC /* Axt Framework */ = {
+			isa = PBXGroup;
+			children = (
+				4AFC6AFD1AD376D4007A34BC /* Axt.h */,
+				4AFC6AFB1AD376D4007A34BC /* Supporting Files */,
+			);
+			name = "Axt Framework";
+			path = Axt;
+			sourceTree = "<group>";
+		};
+		4AFC6AFB1AD376D4007A34BC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4AFC6AFC1AD376D4007A34BC /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A3606EAFF7B1C765A6D7E9F2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C9CAB838D417D81DE5B58922 /* Pods-AxtTests.debug.xcconfig */,
+				74DFAD83B75FFCC6EA9FDB67 /* Pods-AxtTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		4AFC6AF61AD376D4007A34BC /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4AFC6AFE1AD376D4007A34BC /* Axt.h in Headers */,
+				4AFC6B141AD377BC007A34BC /* AXHTMLParser.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		1033F093192374FC00B8CA28 /* AxtTests */ = {
@@ -152,14 +209,37 @@
 			productReference = 1033F094192374FC00B8CA28 /* AxtTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		4AFC6AF81AD376D4007A34BC /* Axt */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4AFC6B0C1AD376D5007A34BC /* Build configuration list for PBXNativeTarget "Axt" */;
+			buildPhases = (
+				4AFC6AF41AD376D4007A34BC /* Sources */,
+				4AFC6AF51AD376D4007A34BC /* Frameworks */,
+				4AFC6AF61AD376D4007A34BC /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Axt;
+			productName = Axt;
+			productReference = 4AFC6AF91AD376D4007A34BC /* Axt.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		1033F07C192374FC00B8CA28 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Matthias Hochgatterer";
+				TargetAttributes = {
+					4AFC6AF81AD376D4007A34BC = {
+						CreatedOnToolsVersion = 6.3;
+						DevelopmentTeam = D92MT22EX5;
+					};
+				};
 			};
 			buildConfigurationList = 1033F07F192374FC00B8CA28 /* Build configuration list for PBXProject "Axt" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -173,6 +253,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				4AFC6AF81AD376D4007A34BC /* Axt */,
 				1033F093192374FC00B8CA28 /* AxtTests */,
 			);
 		};
@@ -217,7 +298,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-AxtTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AxtTests/Pods-AxtTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -236,6 +317,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4AFC6AF41AD376D4007A34BC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4AFC6B131AD377B5007A34BC /* AXHTMLParser.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
@@ -243,6 +332,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -256,6 +346,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -271,7 +363,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -280,6 +372,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -293,6 +386,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -302,6 +396,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -309,13 +404,8 @@
 		};
 		1033F0AB192374FC00B8CA28 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2D367B206CD64C038ADB500B /* Pods-AxtTests.xcconfig */;
+			baseConfigurationReference = C9CAB838D417D81DE5B58922 /* Pods-AxtTests.debug.xcconfig */;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -326,6 +416,7 @@
 					/usr/include/libxml2,
 				);
 				INFOPLIST_FILE = "Tests/AxtTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "at.mah.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -333,21 +424,88 @@
 		};
 		1033F0AC192374FC00B8CA28 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2D367B206CD64C038ADB500B /* Pods-AxtTests.xcconfig */;
+			baseConfigurationReference = 74DFAD83B75FFCC6EA9FDB67 /* Pods-AxtTests.release.xcconfig */;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					/usr/include/libxml2,
 				);
 				INFOPLIST_FILE = "Tests/AxtTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "at.mah.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+		4AFC6B0D1AD376D5007A34BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${SDKROOT}/usr/include/libxml2/**",
+				);
+				INFOPLIST_FILE = Axt/Info.plist;
+				INSTALL_PATH = "@executable_path/../Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "-lxml2";
+				PRODUCT_BUNDLE_IDENTIFIER = "at.mah.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		4AFC6B0E1AD376D5007A34BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${SDKROOT}/usr/include/libxml2/**",
+				);
+				INFOPLIST_FILE = Axt/Info.plist;
+				INSTALL_PATH = "@executable_path/../Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "-lxml2";
+				PRODUCT_BUNDLE_IDENTIFIER = "at.mah.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -368,6 +526,15 @@
 			buildConfigurations = (
 				1033F0AB192374FC00B8CA28 /* Debug */,
 				1033F0AC192374FC00B8CA28 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4AFC6B0C1AD376D5007A34BC /* Build configuration list for PBXNativeTarget "Axt" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4AFC6B0D1AD376D5007A34BC /* Debug */,
+				4AFC6B0E1AD376D5007A34BC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -1,0 +1,37 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "2E31D2BAB0B3049FF962C46DB38E9EAD857BE875",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "F58929673AE316E50ABD11CF3D2173A6C4ECA026" : 0,
+    "2E31D2BAB0B3049FF962C46DB38E9EAD857BE875" : 0,
+    "7CA5E65BA423D05E8BD2758D4672B1C6D16F5813" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "7A39EBCE-4CE8-4894-BA30-465EC2ECB599",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "F58929673AE316E50ABD11CF3D2173A6C4ECA026" : "..\/..\/..",
+    "2E31D2BAB0B3049FF962C46DB38E9EAD857BE875" : "Axt\/",
+    "7CA5E65BA423D05E8BD2758D4672B1C6D16F5813" : ".."
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Axt",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 203,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Axt.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/inquisitivesoft\/Axt.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "2E31D2BAB0B3049FF962C46DB38E9EAD857BE875"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/inquisitiveSoft\/ContentExtractor.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "7CA5E65BA423D05E8BD2758D4672B1C6D16F5813"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:inquisitiveSoft\/Syml.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F58929673AE316E50ABD11CF3D2173A6C4ECA026"
+    }
+  ]
+}

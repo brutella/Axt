@@ -239,14 +239,16 @@ void end_element(void *user_data, const xmlChar *name)
 }
 
 void warning(void *user_data, const char *msg, ...) {
+#ifdef DEBUG
     va_list args;
     
     va_start(args, msg);
     NSString *formatString = [NSString stringWithUTF8String:msg];
     NSString *warning = [[NSString alloc] initWithFormat:formatString arguments:args];
     va_end(args);
-    
+	
     NSLog(@"[Warning] %@", warning);
+#endif
 }
 
 void error(void *user_data, const char *msg, ...) {
